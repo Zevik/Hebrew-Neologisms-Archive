@@ -1,7 +1,6 @@
 import React from 'react';
 import { wordList, stats } from '../services/data';
-import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from 'recharts';
-import { WordStatus, Author } from '../types';
+import { WordStatus } from '../types';
 
 interface HomeViewProps {
   onNavigate: (page: string) => void;
@@ -9,18 +8,10 @@ interface HomeViewProps {
 
 export const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
   const acceptedCount = wordList.filter(w => w.status === WordStatus.ACCEPTED).length;
-  const rejectedCount = wordList.filter(w => w.status === WordStatus.REJECTED).length;
-  const bialikCount = wordList.filter(w => w.author === Author.BIALIK).length;
-  const benYehudaCount = wordList.filter(w => w.author === Author.BEN_YEHUDA).length;
 
   const statusData = [
     { name: 'נקלטו', value: acceptedCount, color: '#16a34a' },
     { name: 'נדחו/אחר', value: wordList.length - acceptedCount, color: '#ef4444' },
-  ];
-
-  const authorData = [
-    { name: 'בן-יהודה', value: benYehudaCount, color: '#8c3a3a' },
-    { name: 'ביאליק', value: bialikCount, color: '#2563eb' },
   ];
 
   return (
